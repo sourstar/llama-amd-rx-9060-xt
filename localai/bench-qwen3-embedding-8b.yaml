@@ -1,0 +1,24 @@
+# The B70's deployed llama-server flags, as a LocalAI model on this card:
+#   -c 8192 -np 1 -b 8192 -ub 8192 -fa on, --pooling last
+# (llama-intel-arc-b70/embed-xpu-qwen3-8b.yaml). The same GGUF, sha256-equal
+# to the node's /mnt/ssd5/apps/models/llama-embed copy. AMD's deterministic
+# mode in env (louise-rag CLAUDE.md invariant 12). A plain llama.cpp backend,
+# no VeGa: this measures the engine, not Louise's receipts path.
+name: bench-qwen3-embedding-8b
+backend: louise-rocm-llama-cpp
+embeddings: true
+context_size: 8192
+threads: 6
+gpu_layers: 999
+flash_attention: "on"
+mmap: true
+parameters:
+    model: weights/llama-embed/Qwen3-Embedding-8B-Q4_K_M.gguf
+    batch: 8192
+    seed: 0
+options:
+    - parallel:1
+    - pooling:last
+    - ubatch:8192
+env:
+    ROCBLAS_DEFAULT_ATOMICS_MODE: "0"
