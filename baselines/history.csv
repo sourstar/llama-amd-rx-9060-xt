@@ -1,1 +1,4 @@
 timestamp,note,image,concurrency,passes,chunks,total_tokens,wall_seconds,tokens_per_second,p50_ms,p95_ms,max_ms,errors
+2026-10-18T22:13:41,"B70 flags: -c 8192 -np 1 -ub 8192 fa on, ROCBLAS_DEFAULT_ATOMICS_MODE=0, client concurrency 1",localai-v4.11.0+louise-llama-cpp:hipblas-724329e027f2,1,3,72,64701,48.16,1343.5,689.4,734.6,749.2,0
+2026-10-18T22:14:36,"B70 flags: -c 8192 -np 1 -ub 8192 fa on, ROCBLAS_DEFAULT_ATOMICS_MODE=0, client concurrency 2",localai-v4.11.0+louise-llama-cpp:hipblas-724329e027f2,2,3,72,64701,38.37,1686.3,1110.0,1149.1,1180.7,0
+2026-10-18T22:15:29,"B70 flags: -c 8192 -np 1 -ub 8192 fa on, ROCBLAS_DEFAULT_ATOMICS_MODE=0, client concurrency 4",localai-v4.11.0+louise-llama-cpp:hipblas-724329e027f2,4,3,72,64701,37.04,1747.0,2097.9,2254.2,2273.2,0

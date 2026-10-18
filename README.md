@@ -74,3 +74,19 @@ Copied byte for byte from llama-intel-arc-b70 at `a2dae24`:
   LocalAI loads the model; nothing starts a llama-server here.
 
 See `KNOWN-ISSUES.md` for what this card and this host do differently.
+
+## Results (2026-10-18, measured)
+
+Qwen3-Embedding-8B Q4_K_M, the B70's flags, `fixtures/bench.json` x 3 passes
+(72 requests, ~64.7k tokens), warm-up one pass; correctness gate PASS
+(worst cosine 1.000000, bit-exact).
+
+| client concurrency | RX 9060 XT | B70 (llama-intel-arc-b70, 2026-08-27) | ratio |
+|---|---|---|---|
+| 1 | 1,344 tok/s (p50 689 ms) | ~3,109 tok/s | 0.43 |
+| 2 | **1,686 tok/s** (p50 1,110 ms) | **3,202** (LIVE row) | **0.53** |
+| 4 | 1,747 tok/s (p50 2,098 ms) | 3,192 | 0.55 |
+
+The B70 runs a standalone llama-server (SYCL b10630); this card runs
+through LocalAI (one gRPC hop per request). A Qwen3-Embedding-8B chunk of
+~980 tokens costs ~0.58 s here, ~0.31 s on the B70.
